@@ -57,7 +57,8 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
             if len(jobs) >= num_jobs:
                 break
 
-            job_button.click()  #You might 
+            #job_button.click()  #You might 
+            driver.execute_script("arguments[0].click();", job_button)
             time.sleep(1)
             collected_successfully = False
             
@@ -184,5 +185,6 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
         except NoSuchElementException:
             print("Scraping terminated before reaching target number of jobs. Needed {}, got {}.".format(num_jobs, len(jobs)))
             break
-
+        
     return pd.DataFrame(jobs)  #This line converts the dictionary object into a pandas DataFrame.
+
